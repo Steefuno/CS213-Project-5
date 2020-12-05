@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Museums</string>
+    <string name="museum_icon_contentDescription">ImageView that displays the image of the select museum.</string>
+    <string name="museum_name">Name not found</string>
 </resources>
