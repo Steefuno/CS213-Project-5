@@ -5,14 +5,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.text.DecimalFormat;
+
+/**
+ * This class represents the second page
+ * The second page shows the ticket prices for museums and allows users to calculate prices
+ * @author Steven Nguyen, Julian Romero
+ */
 public class MuseumInfoActivity extends AppCompatActivity {
     private Intent thisIntent;
+    private Museum museum;
     private TextView museum_name_textView;
     private ImageView museum_icon_imageView;
     private EditText nTickets_students;
@@ -21,7 +33,13 @@ public class MuseumInfoActivity extends AppCompatActivity {
     private TextView price_textView_students;
     private TextView price_textView_adults;
     private TextView price_textView_seniors;
-    private Button calculate_button;
+    private TextView total_cost;
+
+    private static final String priceFormatString = "$#.#";
+    private static final DecimalFormat priceFormat = new DecimalFormat(priceFormatString);
+    private static final String TicketPriceFormat = "%s per ticket";
+
+    private static final String toastText = "Maximum of 5 tickets for each ticket type!";
 
     // Setup activity on created from MuseumsActivity
     @Override
@@ -29,15 +47,25 @@ public class MuseumInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.museum_info);
 
+        thisIntent = getIntent();
+
+        // Get the inputted museum name
+        Bundle extras = thisIntent.getExtras();
+        String museumName = extras.getString("museumName");
+        museum = new Museum(museumName);
+
         // Setup the instance variables
         referenceAllViews();
 
-        // Get the inputted museum name and load the data for the select museum
-        String museumName = thisIntent.getStringExtra(thisIntent.EXTRA_TEXT);
-        loadMuseumData(museumName);
+        // Setup nTickets editTexts to limit tickets to 5
+        setupNTickets();
+
+        // Load the data for the select museum
+        loadMuseumData(museum);
 
         // Display the toast
         displayTicketsLimit();
+        return;
     }
 
     // Reference all necessary views by id
@@ -48,25 +76,70 @@ public class MuseumInfoActivity extends AppCompatActivity {
         nTickets_students = findViewById(R.id.nTickets_students);
         nTickets_adults = findViewById(R.id.nTickets_adults);
         nTickets_seniors = findViewById(R.id.nTickets_seniors);
-        calculate_button = findViewById(R.id.calculate_button);
         price_textView_students = findViewById(R.id.price_textView_students);
         price_textView_adults = findViewById(R.id.price_textView_adults);
         price_textView_seniors = findViewById(R.id.price_textView_seniors);
+        total_cost = findViewById(R.id.total_cost);
+        return;
     }
 
     // Display the toast for limit on tickets
     private void displayTicketsLimit() {
         Context context = getApplicationContext();
-        CharSequence text = "@string/museum_info_toast_text";
-        int duration = Toast.LENGTH_SHORT;
+        CharSequence text = toastText;
+        int duration = Toast.LENGTH_LONG;
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+        return;
     }
 
     // Given the museum name, load the name, icon, and prices
-    private void loadMuseumData(String museumName) {
-        museum_name_textView.setText(museumName);
-        //TODO display museum icon
+    private void loadMuseumData(Museum museum) {
+        museum_name_textView.setText(museum.getName());
+        museum_icon_imageView.setImageResource(museum.getIcon());
+
+        // Display the prices for each ticket type
+        double pricePerStudent = museum.getPriceStudent();
+        double pricePerAdult = museum.getPriceAdult();
+        double pricePerSenior = museum.getPriceSenior();
+        price_textView_students.setText(String.format(TicketPriceFormat, priceFormat.format(pricePerStudent)));
+        price_textView_adults.setText(String.format(TicketPriceFormat, priceFormat.format(pricePerAdult)));
+        price_textView_seniors.setText(String.format(TicketPriceFormat, priceFormat.format(pricePerSenior)));
+        return;
+    }
+
+    // On Museum image or name clicked, open the homepage for the select museum
+    public void openMuseumHomepage(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, museum.getHomepageUri());
+        startActivity(browserIntent);
+    }
+
+    // On Calculate clicked, calculate the cost of all the tickets and output to screen
+    public void calculateCost(View view) {
+        int nStudentTickets = Integer.parseInt(String.valueOf(nTickets_students.getText()));
+        int nAdultTickets = Integer.parseInt(String.valueOf(nTickets_adults.getText()));
+        int nSeniorTickets = Integer.parseInt(String.valueOf(nTickets_seniors.getText()));
+
+        double pricePerStudent = museum.getPriceStudent();
+        double pricePerAdult = museum.getPriceAdult();
+        double pricePerSenior = museum.getPriceSenior();
+
+        double totalPrice =
+                (nStudentTickets * pricePerStudent)
+                + (nAdultTickets * pricePerAdult)
+                + (nSeniorTickets * pricePerSenior);
+
+        String displayPrice = priceFormat.format(totalPrice);
+        total_cost.setText(displayPrice);
+        return;
+    }
+
+    // Setup nTickets to clear the input when the value is above 5
+    private void setupNTickets() {
+        nTickets_students.setOnFocusChangeListener(new nTicketsOnFocusChangedListener());
+        nTickets_adults.setOnFocusChangeListener(new nTicketsOnFocusChangedListener());
+        nTickets_seniors.setOnFocusChangeListener(new nTicketsOnFocusChangedListener());
+        return;
     }
 }
