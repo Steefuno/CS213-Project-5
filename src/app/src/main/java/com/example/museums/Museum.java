@@ -25,49 +25,49 @@ public class Museum {
 
     // Sorted array of museum names
     private static final String[] Names = new String[] {
-        "INSERT_MUSEUM_NAME_HERE",
-        "B",
-        "C",
-        "D"
+        "Metropolitan Museum of Art",
+        "The Museum of Modern Art",
+        "American Museum of Natural History",
+        "Solomon R. Guggenheim Museum"
     };
 
     // Sorted array of museum homepage strings
     private final static String[] HomepageStrings = new String[] {
-        "https://www.google.com",
-        "https://www.geeksforgeeks.org/",
-        "https://developer.android.com",
-        "https://stackoverflow.com"
+        "https://www.metmuseum.org/",
+        "https://www.moma.org/",
+        "https://www.amnh.org/",
+        "https://www.guggenheim.org/"
     };
 
     // Sorted array of museum icons
     private final static int[] Icons = new int[] {
-        R.drawable.catlamp,
-        R.drawable.catlamp,
-        R.drawable.catlamp,
-        R.drawable.catlamp
+        R.drawable.met,
+        R.drawable.moma,
+        R.drawable.amnh,
+        R.drawable.guggenheim
     };
 
     // Sorted array of museum's prices
     private final static double[][] Prices = new double[][] {
         {
-            1.5,
-            2,
-            1
+            12,
+            25,
+            17
         },
         {
-            1.5,
-            2,
-            1
+            14,
+            25,
+            18
         },
         {
-            1.5,
-            2,
-            1
+            18,
+            23,
+            18
         },
         {
-            1.5,
-            2,
-            1
+            18,
+            25,
+            18
         }
     };
 

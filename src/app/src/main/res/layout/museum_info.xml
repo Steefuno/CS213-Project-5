@@ -100,7 +100,7 @@
                     android:autofillHints=""
                     android:hint="@string/student_tickets_hint"
                     android:inputType="number"
-                    android:selectAllOnFocus="true"
+                    android:selectAllOnFocus="false"
                     android:singleLine="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
@@ -134,7 +134,7 @@
                     android:autofillHints=""
                     android:hint="@string/adult_tickets_hint"
                     android:inputType="number"
-                    android:selectAllOnFocus="true"
+                    android:selectAllOnFocus="false"
                     android:singleLine="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
@@ -168,7 +168,7 @@
                     android:autofillHints=""
                     android:hint="@string/senior_tickets_hint"
                     android:inputType="number"
-                    android:selectAllOnFocus="true"
+                    android:selectAllOnFocus="false"
                     android:singleLine="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 

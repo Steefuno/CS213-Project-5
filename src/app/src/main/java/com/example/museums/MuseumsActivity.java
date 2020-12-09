@@ -16,7 +16,7 @@ public class MuseumsActivity extends AppCompatActivity {
         //setContentView(R.layout.museums); //temp disabled to test MuseumInfoActivity - enable this and remove below later
 
         Intent intent = new Intent(this, MuseumInfoActivity.class);
-        intent.putExtra("museumName", "INSERT_MUSEUM_NAME_HERE");
+        intent.putExtra("museumName", "Metropolitan Museum of Art");
         startActivity(intent);
     }
 }

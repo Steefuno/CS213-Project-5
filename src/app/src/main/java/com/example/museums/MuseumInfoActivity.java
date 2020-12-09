@@ -35,11 +35,13 @@ public class MuseumInfoActivity extends AppCompatActivity {
     private TextView price_textView_seniors;
     private TextView total_cost;
 
-    private static final String priceFormatString = "$#.#";
+    private static final String priceFormatString = "$#.##";
     private static final DecimalFormat priceFormat = new DecimalFormat(priceFormatString);
     private static final String TicketPriceFormat = "%s per ticket";
 
     private static final String toastText = "Maximum of 5 tickets for each ticket type!";
+
+    private static final double NYSalesTax = 0.04;
 
     // Setup activity on created from MuseumsActivity
     @Override
@@ -117,18 +119,40 @@ public class MuseumInfoActivity extends AppCompatActivity {
 
     // On Calculate clicked, calculate the cost of all the tickets and output to screen
     public void calculateCost(View view) {
-        int nStudentTickets = Integer.parseInt(String.valueOf(nTickets_students.getText()));
-        int nAdultTickets = Integer.parseInt(String.valueOf(nTickets_adults.getText()));
-        int nSeniorTickets = Integer.parseInt(String.valueOf(nTickets_seniors.getText()));
+        String sStudentTickets = String.valueOf(nTickets_students.getText());
+        String sAdultTickets = String.valueOf(nTickets_adults.getText());
+        String sSeniorTickets = String.valueOf(nTickets_seniors.getText());
 
+        int nStudentTickets, nAdultTickets, nSeniorTickets;
+
+        // For each input, if no input, set to 0
+        if (sStudentTickets.equals("")) {
+            nStudentTickets = 0;
+        } else {
+            nStudentTickets = Integer.parseInt(sStudentTickets);
+        }
+        if (sAdultTickets.equals("")) {
+            nAdultTickets = 0;
+        } else {
+            nAdultTickets = Integer.parseInt(sAdultTickets);
+        }
+        if (sSeniorTickets.equals("")) {
+            nSeniorTickets = 0;
+        } else {
+            nSeniorTickets = Integer.parseInt(sSeniorTickets);
+        }
+
+        // Calculate cost
         double pricePerStudent = museum.getPriceStudent();
         double pricePerAdult = museum.getPriceAdult();
         double pricePerSenior = museum.getPriceSenior();
 
         double totalPrice =
-                (nStudentTickets * pricePerStudent)
-                + (nAdultTickets * pricePerAdult)
-                + (nSeniorTickets * pricePerSenior);
+                (1 + NYSalesTax) * (
+                    (nStudentTickets * pricePerStudent)
+                    + (nAdultTickets * pricePerAdult)
+                    + (nSeniorTickets * pricePerSenior)
+                );
 
         String displayPrice = priceFormat.format(totalPrice);
         total_cost.setText(displayPrice);
