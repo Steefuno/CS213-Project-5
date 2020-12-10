@@ -16,6 +16,11 @@ import com.example.museums.MuseumInfoActivity;
 public class MuseumsActivity extends AppCompatActivity {
     private static final String museumInfoActivityParameterName = "museumName";
 
+    private static final String argForMet = "Metropolitan Museum of Art";
+    private static final String argForGug = "Solomon R. Guggenheim Museum";
+    private static final String argForNat = "American Museum of Natural History";
+    private static final String argForMod = "The Museum of Modern Art";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,22 +29,22 @@ public class MuseumsActivity extends AppCompatActivity {
 
     public void goToMet(View view) {
         Intent intent = new Intent(this, MuseumInfoActivity.class);
-        intent.putExtra(museumInfoActivityParameterName, "Metropolitan Museum of Art");
+        intent.putExtra(museumInfoActivityParameterName, argForMet);
         startActivity(intent);
     }
     public void goToGug(View view) {
         Intent intent1 = new Intent(this, MuseumInfoActivity.class);
-        intent1.putExtra(museumInfoActivityParameterName, "Solomon R. Guggenheim Museum");
+        intent1.putExtra(museumInfoActivityParameterName, argForGug);
         startActivity(intent1);
     }
     public void goToNatural(View view) {
         Intent intent2 = new Intent(this, MuseumInfoActivity.class);
-        intent2.putExtra(museumInfoActivityParameterName, "American Museum of Natural History");
+        intent2.putExtra(museumInfoActivityParameterName, argForNat);
         startActivity(intent2);
     }
     public void goToModern(View view) {
         Intent intent3 = new Intent(this, MuseumInfoActivity.class);
-        intent3.putExtra(museumInfoActivityParameterName, "The Museum of Modern Art");
+        intent3.putExtra(museumInfoActivityParameterName, argForMod);
         startActivity(intent3);
     }
 
