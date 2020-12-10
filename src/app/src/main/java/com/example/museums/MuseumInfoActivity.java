@@ -31,6 +31,8 @@ public class MuseumInfoActivity extends AppCompatActivity {
     private TextView price_textView_seniors;
     private TextView total_cost;
 
+    private static final String parameterName = "museumName";
+
     private static final String priceFormatString = "$#.##";
     private static final DecimalFormat priceFormat = new DecimalFormat(priceFormatString);
     private static final String TicketPriceFormat = "%s per ticket";
@@ -49,7 +51,7 @@ public class MuseumInfoActivity extends AppCompatActivity {
 
         // Get the inputted museum name
         Bundle extras = thisIntent.getExtras();
-        String museumName = extras.getString("museumName");
+        String museumName = extras.getString(parameterName);
         museum = new Museum(museumName);
 
         // Setup the instance variables
