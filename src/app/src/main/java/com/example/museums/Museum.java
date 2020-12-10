@@ -125,6 +125,6 @@ public class Museum {
                 return i;
         }
 
-        return -1;
+        return 0; // Defaults to first museum if not found
     }
 }

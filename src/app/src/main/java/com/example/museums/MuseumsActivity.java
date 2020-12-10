@@ -29,7 +29,7 @@ public class MuseumsActivity extends AppCompatActivity {
     }
     public void goToGug(View view) {
         Intent intent1 = new Intent(this, MuseumInfoActivity.class);
-        intent1.putExtra(museumInfoActivityParameterName, "Guggenheim Museum");
+        intent1.putExtra(museumInfoActivityParameterName, "Solomon R. Guggenheim Museum");
         startActivity(intent1);
     }
     public void goToNatural(View view) {
@@ -39,7 +39,7 @@ public class MuseumsActivity extends AppCompatActivity {
     }
     public void goToModern(View view) {
         Intent intent3 = new Intent(this, MuseumInfoActivity.class);
-        intent3.putExtra(museumInfoActivityParameterName, "Museum of Modern Art");
+        intent3.putExtra(museumInfoActivityParameterName, "The Museum of Modern Art");
         startActivity(intent3);
     }
 
