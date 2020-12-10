@@ -1,7 +1,8 @@
-package com.example.museums;
+package com.example.museumapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,25 +19,28 @@ public class MuseumsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState.equals("Metropolitan Museum of Art")){
-            Intent intent = new Intent(this, MuseumInfoActivity.class);
-            intent.putExtra(museumInfoActivityParameterName, "Metropolitan Museum of Art");
-            startActivity(intent);
-        }
-        else if(savedInstanceState.equals("Guggenheim Museum")){
-            Intent intent1 = new Intent(this, MuseumInfoActivity.class);
-            intent1.putExtra(museumInfoActivityParameterName, "Guggenheim Museum");
-            startActivity(intent1);
-        }
-        else if(savedInstanceState.equals("American Museum of Natural History")){
-            Intent intent2 = new Intent(this, MuseumInfoActivity.class);
-            intent2.putExtra(museumInfoActivityParameterName, "American Museum of Natural History");
-            startActivity(intent2);
-        }
-        else{
-            Intent intent3 = new Intent(this, MuseumInfoActivity.class);
-            intent3.putExtra(museumInfoActivityParameterName, "Museum of Modern Art");
-            startActivity(intent3);
-        }
+        setContentView(R.layout.museum);
     }
+
+    public void goToMet(View view) {
+        Intent intent = new Intent(this, MuseumInfoActivity.class);
+        intent.putExtra(museumInfoActivityParameterName, "Metropolitan Museum of Art");
+        startActivity(intent);
+    }
+    public void goToGug(View view) {
+        Intent intent1 = new Intent(this, MuseumInfoActivity.class);
+        intent1.putExtra(museumInfoActivityParameterName, "Guggenheim Museum");
+        startActivity(intent1);
+    }
+    public void goToNatural(View view) {
+        Intent intent2 = new Intent(this, MuseumInfoActivity.class);
+        intent2.putExtra(museumInfoActivityParameterName, "American Museum of Natural History");
+        startActivity(intent2);
+    }
+    public void goToModern(View view) {
+        Intent intent3 = new Intent(this, MuseumInfoActivity.class);
+        intent3.putExtra(museumInfoActivityParameterName, "Museum of Modern Art");
+        startActivity(intent3);
+    }
+
 }
