@@ -1,4 +1,4 @@
-package com.example.museumapp;
+package com.example.museums;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ public class MuseumsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.museum);
+        setContentView(R.layout.museums);
     }
 
     public void goToMet(View view) {
