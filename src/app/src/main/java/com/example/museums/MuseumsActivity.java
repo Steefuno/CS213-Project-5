@@ -24,22 +24,22 @@ public class MuseumsActivity extends AppCompatActivity {
 
     public void goToMet(View view) {
         Intent intent = new Intent(this, MuseumInfoActivity.class);
-        intent.putExtra(museumInfoActivityParameterName, "Metropolitan Museum of Art");
+        intent.putExtra(museumInfoActivityParameterName, "met");
         startActivity(intent);
     }
     public void goToGug(View view) {
         Intent intent1 = new Intent(this, MuseumInfoActivity.class);
-        intent1.putExtra(museumInfoActivityParameterName, "Guggenheim Museum");
+        intent1.putExtra(museumInfoActivityParameterName, "guggenheim");
         startActivity(intent1);
     }
     public void goToNatural(View view) {
         Intent intent2 = new Intent(this, MuseumInfoActivity.class);
-        intent2.putExtra(museumInfoActivityParameterName, "American Museum of Natural History");
+        intent2.putExtra(museumInfoActivityParameterName, "natural");
         startActivity(intent2);
     }
     public void goToModern(View view) {
         Intent intent3 = new Intent(this, MuseumInfoActivity.class);
-        intent3.putExtra(museumInfoActivityParameterName, "Museum of Modern Art");
+        intent3.putExtra(museumInfoActivityParameterName, "modern");
         startActivity(intent3);
     }
 
