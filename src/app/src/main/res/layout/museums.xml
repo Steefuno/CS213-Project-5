@@ -19,33 +19,35 @@
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:onClick="goToMet"
-            android:text="@string/met" />
+            android:text="@string/met"
+            android:textAlignment="center" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:onClick="goToGug"
-            android:text="@string/guggenheim" />
+            android:text="@string/guggenheim"
+            android:textAlignment="center" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:onClick="goToNatural"
-            android:text="@string/natural" />
+            android:text="@string/natural"
+            android:textAlignment="center" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="59dp"
             android:onClick="goToModern"
-            android:text="@string/modern" />
+            android:text="@string/modern"
+            android:textAlignment="center" />
 
-        <EditText
-            android:id="@+id/editText"
+        <TextView
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/caption"
+            android:layout_height="wrap_content"
+            android:text="@string/textview"
             android:textAlignment="center" />
 
     </LinearLayout>
