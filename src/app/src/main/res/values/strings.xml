@@ -16,4 +16,5 @@
     <string name="met">Metropolitan Museum of Art</string>
     <string name="modern">Museum of Modern Art</string>
     <string name="caption">Pick a museum of your choice</string>
+    <string name="textview">Pick a museum of your choice</string>
 </resources>
